@@ -1,0 +1,9 @@
+mqtt_ip         = "1.2.3.5"                           # MQTT Broker IP
+mqtt_topic      = "testing/airPurifierBridge"         # MQTT Topic to use
+
+miot_ip         ="1.2.3.4"                            # Xiaomi Arpurfier 3H IP-Address
+miot_token      ="1234567890ABCDEFGHIJKLMNopqrstuv"   # device Token
+
+update_interval = (10 * 60)                           # Update between regular updates of the state (10 minutes)
+
+loglevel        = 1                                   # 0=Exceptions 1=Application 2=Actions 3=Debug
