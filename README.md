@@ -53,3 +53,8 @@ These topics can control the device:
 - Run miotAirpurifierBridge.py
 
 Set the environment `airpurifierConfigFile` to use a different configfile.
+
+### systemd
+The systemd folder conatins a systemd service that can be customized and dropped
+into `/etc/systemd/system`. It assumes the `miotAirpurifierBridge.py` script is
+located in `/opt/miotAirpurifierBridge/`
