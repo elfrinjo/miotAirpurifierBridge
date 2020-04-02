@@ -1,8 +1,8 @@
-mqtt_ip         = "1.2.3.5"                           # MQTT Broker IP
-mqtt_topic      = "testing/airPurifierBridge"         # MQTT Topic to use
+mqtt_ip         = "1.2.3.5"                           # MQTT broker IP or hostname
+mqtt_topic      = "testing/airPurifierBridge"         # MQTT topic to use
 
-miot_ip         ="1.2.3.4"                            # Xiaomi Arpurfier 3H IP-Address
-miot_token      ="1234567890ABCDEFGHIJKLMNopqrstuv"   # device Token
+miot_ip         ="1.2.3.4"                            # Xiaomi arpurfier 3H IP or hostname
+miot_token      ="1234567890ABCDEFGHIJKLMNopqrstuv"   # Device security token
 
 update_interval = (10 * 60)                           # Update between regular updates of the state (10 minutes)
 
