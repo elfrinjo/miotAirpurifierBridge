@@ -52,6 +52,9 @@ def on_mqttDisconnect(client, userdata, rc):
 def on_mqttConnect(client, userdata, flags, rc):
     log(1, "MQTT broker connected")
 
+## Log unknown MQTT Message Data Values
+def msgDataUnknown():
+    log(2, "The data inside the MQTT topic is invalid")
 
 ## MQTT Subscription Loop Callback Function
 def on_mqttMessage(client, userdata, message):
@@ -60,11 +63,43 @@ def on_mqttMessage(client, userdata, message):
     log(2, "RECEIVED: " + mqttMsgTopic + ":" + mqttMsgData)
     if ( mqttMsgTopic == mqtt_cmdTopic+"devicePower" ):
         if (mqttMsgData == "on"):
+            log(2, "ACTION: Power on")
             ap.on()
-            log(2, "ACTION: Power On")
         elif (mqttMsgData == "off"):
+            log(2, "ACTION: Power off")
             ap.off()
-            log(2, "ACTION: Power Off")
+        else:
+            msgDataUnknown()
+    elif ( mqttMsgTopic == mqtt_cmdTopic+"fanLevel" ):
+        if ( mqttMsgData == "1" ):
+            log(2, "ACTION: Set fanLevel 1")
+            ap.set_fan_level(1)
+        elif ( mqttMsgData == "2" ):
+            log(2, "ACTION: Set fanLevel 2")
+            ap.set_fan_level(2)
+        elif ( mqttMsgData == "3" ):
+            log(2, "ACTION: Set fanLevel 3")
+            ap.set_fan_level(3)
+        else:
+            msgDataUnknown()
+    elif ( mqttMsgTopic == mqtt_cmdTopic+"deviceMode" ):
+        if ( mqttMsgData == "Auto" ):
+            log(2, "ACTION: Set deviceMode Auto")
+            ap.set_mode(miio.airpurifier_miot.OperationMode.Auto)
+        elif ( mqttMsgData == "Fan" ):
+            log(2, "ACTION: Set deviceMode Fan")
+            ap.set_mode(miio.airpurifier_miot.OperationMode.Fan)
+        elif ( mqttMsgData == "Favorite" ):
+            log(2, "ACTION: Set deviceMode Favorite")
+            ap.set_mode(miio.airpurifier_miot.OperationMode.Favorite)
+        elif ( mqttMsgData == "Silent" ):
+            log(2, "ACTION: Set deviceMode Silent")
+            ap.set_mode(miio.airpurifier_miot.OperationMode.Silent)
+        else:
+            msgDataUnknown()
+    else:
+        log(2, "The MQTT topic is invalid")
+
     ## Force update of STATE after switching things
     time.sleep(5)
     updateMqttStateTopic()
@@ -97,7 +132,7 @@ time.sleep(5)
 
 ## Subscribe to mqtt command topics and start the loop
 mqtt_cmdTopic = mqtt_topic + "/CMD/"
-mqttClient.subscribe(mqtt_cmdTopic+"power")
+mqttClient.subscribe(mqtt_cmdTopic+"#")
 mqttClient.on_message = on_mqttMessage
 mqttClient.on_connect = on_mqttConnect
 mqttClient.on_disconnect = on_mqttDisconnect

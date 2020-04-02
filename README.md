@@ -37,6 +37,8 @@ These topics can control the device:
 | CMD Topic                                  | Values expected              | Meaning                                                                    |
 |--------------------------------------------|------------------------------|----------------------------------------------------------------------------|
 | `{mqtt_topic}/CMD/devicePower`             | on/off                       | Turn the device on or off                                                  |
+| `{mqtt_topic}/CMD/deviceMode`              | Auto, Silent, Favorite, Fan  | The mode to run (turns the device on)                                      |
+| `{mqtt_topic}/CMD/fanLevel`                | 1, 2, 3                      | The fanlevel preset to run (turns the device on)                           |
 
 
 
