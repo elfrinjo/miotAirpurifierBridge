@@ -58,7 +58,7 @@ def on_mqttMessage(client, userdata, message):
     mqttMsgData  = message.payload.decode("utf-8")
     mqttMsgTopic = message.topic
     log(2, "RECEIVED: " + mqttMsgTopic + ":" + mqttMsgData)
-    if ( mqttMsgTopic == mqtt_cmdTopic+"power" ):
+    if ( mqttMsgTopic == mqtt_cmdTopic+"devicePower" ):
         if (mqttMsgData == "on"):
             ap.on()
             log(2, "ACTION: Power On")

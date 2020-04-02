@@ -34,9 +34,9 @@ These topics are reported from the device:
 
 These topics can control the device:
 
-| CMD Topic                   | Values expected  | Meaning                       |
-|-----------------------------|------------------|-------------------------------|
-| `{mqtt_topic}/CMD/power`    | on/off           | Turn the device on or off     |
+| CMD Topic                                  | Values expected              | Meaning                                                                    |
+|--------------------------------------------|------------------------------|----------------------------------------------------------------------------|
+| `{mqtt_topic}/CMD/devicePower`             | on/off                       | Turn the device on or off                                                  |
 
 
 
