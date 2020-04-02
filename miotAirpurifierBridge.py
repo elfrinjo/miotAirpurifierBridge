@@ -3,6 +3,7 @@ import time
 from datetime import datetime
 import paho.mqtt.client as paho
 import miio
+import socket
 
 
 ## Logging to con
@@ -124,8 +125,9 @@ ap = miio.airpurifier_miot.AirPurifierMiot(ip=miot_ip, token=miot_token)
 
 
 ## The MQTT Client object
-mqttClient = paho.Client("airPurifierBridge")
-log(1, "Connecting to MQTT broker " + mqtt_ip)
+mqtt_clientId = "apBridge_" + socket.gethostname() + "_" + configfile
+log(1, "Connecting to MQTT broker " + mqtt_ip + " as " + mqtt_clientId)
+mqttClient = paho.Client(mqtt_clientId)
 mqttClient.connect(mqtt_ip)
 time.sleep(5)
 
