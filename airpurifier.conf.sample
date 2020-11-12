@@ -1,4 +1,5 @@
 mqtt_ip         = "1.2.3.5"                           # MQTT broker IP or hostname
+mqtt_port       = 1883                                # MQTT broker port
 mqtt_topic      = "testing/airPurifierBridge"         # MQTT topic to use
 
 miot_ip         ="1.2.3.4"                            # Xiaomi arpurfier 3H IP or hostname

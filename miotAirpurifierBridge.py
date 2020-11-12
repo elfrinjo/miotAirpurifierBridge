@@ -126,9 +126,9 @@ ap = miio.airpurifier_miot.AirPurifierMiot(ip=miot_ip, token=miot_token)
 
 ## The MQTT Client object
 mqtt_clientId = "apBridge_" + socket.gethostname() + "_" + configfile
-log(1, "Connecting to MQTT broker " + mqtt_ip + " as " + mqtt_clientId)
+log(1, "Connecting to MQTT broker " + mqtt_ip + ":" + str(mqtt_port) + " as " + mqtt_clientId)
 mqttClient = paho.Client(mqtt_clientId)
-mqttClient.connect(mqtt_ip)
+mqttClient.connect(mqtt_ip, port=mqtt_port)
 time.sleep(5)
 
 
